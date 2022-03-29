@@ -1,0 +1,17 @@
+<a ui-sref="dogs.terrier">[ Terrier ]</a>
+
+<div ng-if="vm.animalName">
+    Animal name from child controller: {{vm.animalName}}
+</div>
+<div>
+    Are labs valid? {{vm.isLabValid}}
+</div>
+<div class="center">
+    <p>This is the partial view for {{vm.viewName}}</p>
+    <input type="number" ng-model="vm.firstOperand" ng-change="vm.add()" />
+    + <input type="number" ng-model="vm.secondOperand" ng-change="vm.add()" />
+    <span>Result is {{vm.result | currency }}</span>
+</div>
+
+<div ui-view></div>
+<div ui-view="larry"></div>
