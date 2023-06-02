@@ -1,13 +1,19 @@
 <div class="center">
-    Dog breed is {{vm.breed}}
+    Dog breed is {{vm.breed}} and age is {{vm.age}}
     <div>
         Animal name in terrier state is <strong>{{vm.animalName}}</strong>
     </div>
 </div>
+<!-- ng-change="vm.onChange" -->
 
 <div class="center">
-    <garfield-cat last-name="Terrance"></garfield-cat>
-    <garfield-cat last-name="M."></garfield-cat>
-    <garfield-cat last-name="A."></garfield-cat>
-    <garfield-cat last-name="V."></garfield-cat>
+    <select ng-model="vm.lastName"
+            ng-change="vm.onChange(vm.lastName)"
+            ng-options="name as name for name in vm.names">
+        <option></option>
+    </select>
+    <garfield-cat last-name="{{vm.lastName}}"
+                  personal="vm.personalInfo",
+                  on-image-click="vm.onImageClick(val)">
+    ></garfield-cat>
 </div>

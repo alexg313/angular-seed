@@ -1,5 +1,18 @@
-<img src="https://img.search.brave.com/KGBm_xyHsAacR2CaT45Yzy_5VNy06s6JxRfNl-7gVQ0/rs:fit:327:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5Y/bFhOc09mX2UwUDQx/ekdFUUdKbnpnSGFL/diZwaWQ9QXBp" />
-<span><strong>{{vm.fullName}}</strong></span>
+<div ng-init="vm.timesClicked = 0;">
+  <img ng-click="val = 1; vm.onImageClick(val);" ng-src="{{vm.catImage}}" />
+  <span>
+    <strong>
+      Garfield {{vm.middleName}}
+
+    </strong>
+    ({{vm.personal.rank}})
+  </span>
+
+  <button type="button" ng-click="vm.changeName();">
+    Toggle name
+  </button>
+</div>
+
 
 <p>
   Showing of 'interpolate' filter:

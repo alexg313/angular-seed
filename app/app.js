@@ -38,8 +38,25 @@ config(['$locationProvider', '$stateProvider', function($locationProvider, $stat
             const vm = this;
             vm.breed = 'terrier';
             vm.animalName = 'Terrance';
-
+            vm.names = ['Bin-laden', 'Al-Assad', 'Zarqāwī'];
+            vm.age = 5;
             $scope.$emit('setAnimalName', vm.animalName);
+
+            vm.personalInfo = {rank: 'Ace'};
+
+            vm.onImageClick = (obj) => {
+                console.log("What is this ", obj);
+            };
+
+            vm.onChange = (val) => {
+                vm.personalInfo.rank = ['Ace of Spades', 'Ace of Hearts'][Math.floor(Math.random() * 3)];
+                console.log("on-change:: ", val);
+            };
+
+            $scope.$on('onAddResult', (event, data) => {
+                console.log("On add was triggered", data);
+                vm.age = data.result;
+            });
 
         },
         controllerAs: 'vm'

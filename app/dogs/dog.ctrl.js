@@ -1,12 +1,10 @@
 'use strict';
 
-function DogCtrl($scope, $state, DogService, allDogs) {
+function DogCtrl($rootScope, $scope, $state, $interval, DogService, allDogs) {
   const vm = this;
-  vm.viewName = "Dogs";
-  vm.animalName = "Larry";
 
-  console.log("Dog service???? ", DogService);
-  console.log("All dogs? ", allDogs);
+  $scope.animalName = "Larry";
+
   vm.isLabValid = DogService.isValidBreed('lab');
 
   $scope.$on('setAnimalName', (event, data) => {
@@ -14,12 +12,23 @@ function DogCtrl($scope, $state, DogService, allDogs) {
     vm.animalName = data;
   });
 
+  $scope.$on("onCatInit", () => {
+    console.log("Cat Initialized");
+  });
+
+
   vm.add = () => {
     vm.result = (vm.firstOperand || 0) + (vm.secondOperand || 0);
+    $scope.$broadcast('onAddResult', { result: vm.result });
   };
-}
 
-DogCtrl.$inject = ['$scope', '$state', 'DogService', 'allDogs'];
+  vm.onChange = (val) => console.log(val);
+
+  $interval(() => {
+    console.log("About to publish triggerInterval");
+    $rootScope.$broadcast('triggerInterval');
+  }, 50000);
+}
 
 angular
   .module('myApp')
